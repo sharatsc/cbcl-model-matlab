@@ -1,0 +1,1 @@
+function img=make_bar_stimulus()

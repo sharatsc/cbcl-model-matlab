@@ -1,0 +1,19 @@
+function ftr=callback_c2b_gd2D(img,c1patches,varargin)
+    if(size(img,3)==3)
+      img = rgb2gray(img);
+    end;
+    img     = im2double(img);
+    %----------------------
+    %
+    %----------------------
+    s1      =   s1_gd2D(img);
+    c1      =   c_generic(s1,8,3,2);
+    s2      =   s_generic_tuning(c1,c1patches);
+    c2b     =   c_terminal(s2);
+    %format the outputs
+    ftr{1}       = c2b;
+    ftr{2}       = c1;
+    ftr_names{1} = {'C2b','C1'};
+    ver          = 1;
+%end function
+
