@@ -14,6 +14,7 @@ The code provides different kinds of feature detectors.
   * *c_global.m*: This provides pooling across all positions and scale. 
 
 ===Filters/Prototypes===
-  * Each S layer (S_{n}) acts as a feature detector that computes the similarity of the previous layer (C_{n-1}) to a given set or prototypes (P_{i},i=1..n)
+Each S layer (S_{n}) acts as a feature detector that computes the similarity of the previous layer (C_{n-1}) to a given set or prototypes (P_{i},i=1..n)
+
   * *get_c_patches.m* : This function provides a way to generate the prototypes. Given a cell-array of C_{n-1} outputs, it randomly samples patches to generate the prototypes P_{i} used to compute S_{n}
   * *learn_c_patches.m*: This function provides a way to 'learn' the patches instead of sampling them. This generates far fewer prototypes for a desired level of accuracy. The learning follows scheme mentioned in Fukushima.
