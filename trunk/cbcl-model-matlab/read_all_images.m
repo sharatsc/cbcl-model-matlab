@@ -22,6 +22,10 @@ for i = 1:length(classes)
  if(~isdir(fullfile(dir_name,classes(i).name)))
   continue;
  end;
+ if(strcmp(classes(i).name,'.') | strcmp(classes(i).name,'..'))
+ 	continue;
+ end;
+
  img_files=read_single_folder(fullfile(dir_name,classes(i).name),ext,max_images);
  fprintf('FOLDER:%s, FILES:%d\n',classes(i).name,length(img_files));
  img_cell           = cat(2,img_cell,img_files);
@@ -45,6 +49,7 @@ function img_files = read_single_folder(folder,ext,max_files)
   for e = 1:length(ext)
     d=cat(1,d,dir(fullfile(folder,['*.' ext{e}])));
   end;%end extension
+  d      = d(randperm(length(d)));
   d      = d(1:min(length(d),max_files));
   %get file names
   for i=1:length(d)
