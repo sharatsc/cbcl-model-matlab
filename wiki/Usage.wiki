@@ -10,11 +10,15 @@ The code provides different kinds of feature detectors.
   * *s_rbf.m*:This provides a gaussian tuning around the prototype (used for S2) 
 
 ===C Layer===
-  * *c_local.m* : This provides local pooling across position and scale. (used for C1,C2) 
-  * *c_global.m*: This provides pooling across all positions and scale. 
+  * *c_local.m* : This provides local pooling across position and scale. (used for C1) 
+  * *c_global.m*: This provides pooling across all positions and scale.  (used for C2)
 
 ===Filters/Prototypes===
 Each S layer (S_{n}) acts as a feature detector that computes the similarity of the previous layer (C_{n-1}) to a given set or prototypes (P_{i},i=1..n)
 
   * *get_c_patches.m* : This function provides a way to generate the prototypes. Given a cell-array of C_{n-1} outputs, it randomly samples patches to generate the prototypes P_{i} used to compute S_{n}
   * *learn_c_patches.m*: This function provides a way to 'learn' the patches instead of sampling them. This generates far fewer prototypes for a desired level of accuracy. The learning follows scheme mentioned in Fukushima.
+
+===Compatibility===
+Due to the different ways in which S layers are computed, the output is 'similar' but not 'identical' to the previous matlab implmentation (found [http://cbcl.mit.edu/software-datasets/standardmodel/index.html here]). 
+  * *compare_versions.m* : This function compares the output and timing of the two matlab versions using the same image and prototypes. 
