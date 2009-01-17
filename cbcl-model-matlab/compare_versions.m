@@ -7,7 +7,7 @@
 function compare_versions 
 %------------
 %paths
-STDMODELPATH='~/third_part/standardmodel';
+STDMODELPATH='~/third_party/standardmodel';
 STMPATH     ='~/stm';
 addpath(genpath(STDMODELPATH));
 addpath(genpath(STMPATH));

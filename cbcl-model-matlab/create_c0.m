@@ -14,8 +14,9 @@ function c0=create_c0(img,scale,levels)
   pmin   = min(img(:));
   pmax   = max(img(:));
   prange = pmax-pmin+eps;
-  for i=0:levels-1
-    out     =imresize(img,round([ht,wt]*(scale^-i)),'bicubic');
+  c0{1}  = img;
+  for i=1:levels-1
+    out     =imresize(c0{i},round([ht,wt]*(scale^-i)),'bilinear');
     %new range
     nmax    =max(out(:));
     nmin    =min(out(:));
