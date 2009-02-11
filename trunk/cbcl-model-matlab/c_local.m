@@ -26,7 +26,9 @@ function out  = c_generic(s,POOL,STEP,SCALEPOOL,SCALESTEP)
     b             = b+1;
   end;
   for b = 1:BANDS
-    out{b}= out{b}(floor(POOL/2)+1:STEP:end-ceil(POOL/2)+1,floor(POOL/2)+1:STEP:end-ceil(POOL/2)+1,:);
+    out{b}= out{b}(max(1,floor(POOL/2)+1):STEP:min(end-ceil(POOL/2)+1,size(out{b},1)),...
+                   max(1,floor(POOL/2)+1):STEP:min(end-ceil(POOL/2)+1,size(out{b},2)),...
+                   1:size(out{b},3));
   end;
 %end function
 
