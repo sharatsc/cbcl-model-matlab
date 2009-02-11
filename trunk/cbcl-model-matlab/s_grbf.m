@@ -19,6 +19,7 @@ for b = 1:num_bands
     patch            = patches{p};
     [pht,pwt,pdir]   = size(patch);
     if(pht> cht | pwt>cwt) 
+     s{b}=zeros(1,1,cdir);
      continue;
     end;%patch larger than image!
     ptch2            = sum(patch(:).^2);
@@ -30,8 +31,8 @@ for b = 1:num_bands
       res_tmp  = res_tmp-2*tmp;
     end;
     res_tmp    = exp(-res_tmp/(2*sigma*sigma));
-    %res_tmp    = padarray(res_tmp,[floor((pht-1)/2),floor((pwt-1)/2)],'pre');
-    %res_tmp    = padarray(res_tmp,[ceil((pht-1)/2),ceil((pwt-1)/2)],'post');
+    res_tmp    = padarray(res_tmp,[floor((pht-1)/2),floor((pwt-1)/2)],'pre');
+    res_tmp    = padarray(res_tmp,[ceil((pht-1)/2),ceil((pwt-1)/2)],'post');
     s{b}(:,:,p)= res_tmp;
   end;
 end;
