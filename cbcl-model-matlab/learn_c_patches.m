@@ -6,9 +6,9 @@
 %the S2b and C2b layers in the model. 
 %sharat@mit.edu
 %---------------------------------------------------------
-function patches = learn_patches(img_set,CALLBACK,patches_gabor,N)
+function patches = learn_c_patches(img_set,CALLBACK,patches_gabor,N)
 DEBUG      = 0;
-DOMIN      = 1;
+DOMIN      = 0;
 TRIALS     = 100;
 %-------------------------------------------
 %establish funciton to call
@@ -17,20 +17,20 @@ if(isempty(CALLBACK))
   CALLBACK  = 'callback_c1_baseline';
 end;
 num_images      = length(img_set);
-psz             = 8;
+psz             = 4;
 
 if(iscell(N))
   patches       = N;
   N             = length(patches);
   DSIGMA        = 0.5;
-  NU            = 0.01;
+  NU            = 0.1;
 else
   for i = 1:N
 	for j=1:(1+10*rand)
-	  patches{i}	= eps*rand(psz,psz,4);
+	  patches{i}	= rand(psz,psz,4);
 	end;
   end;
-  DSIGMA     = N/8;
+  DSIGMA     = N/2;
   NU         = 0.1;
 end;  
 
@@ -57,9 +57,9 @@ for t=1:TRIALS
 	if(DEBUG)
 	  imagesc(img);axis image;
 	end;
-	s        = s_generic_dist(c1,patches);
-	c        = c_terminal(s,DOMIN)
-	minval   = min(c(:));
+	s        = s_grbf(c1,patches,1);
+	c        = c_terminal(s);
+	minval   = max(c(:));
 	for pnum = find(c==minval,1) %randsample(1:N,1,true,1./c);%
 	  [i,j]        = find(s{1}(:,:,pnum)==minval);
 	  xrange       = j:min(j+psz-1,cwt);
@@ -77,9 +77,17 @@ for t=1:TRIALS
 	end;%pnum
   end;%i
   for i=1:N
-	for j=1:4
-	 subplot(N,4,(i-1)*4+j);imagesc(patches{i}(:,:,j));
-    end;
+	 rowPatch=[];
+	 [tmp,maxIdx]=max(patches{i},[],3);
+	 for y=1:size(patches{i},1)
+	   colPatch=[];
+	   for x=1:size(patches{i},2)
+		 blk=patches_gabor{maxIdx(y,x)}
+		 colPatch=cat(2,colPatch,blk);
+	   end;
+	   rowPatch=cat(1,rowPatch,colPatch);
+	 end;
+	 subplot(1,N,i);imagesc(rowPatch);colormap('gray');
   end;
   pause(3);
   %------------------
