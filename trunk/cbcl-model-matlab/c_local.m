@@ -1,4 +1,16 @@
-function out  = c_generic(s,POOL,STEP,SCALEPOOL,SCALESTEP)
+%------------------------------------------------------------
+%c_local
+% performs local pooling across locations and scales
+% parameters:
+%            s : [IN] input scale pyramid
+%          POOL: [IN] spatial pooling 
+%          STEP: [IN] step size while pooling
+%          SCALEPOOL: [IN] number of scales to pool over
+%          SCALESTEP: [IN} step size in scales
+%          out : [OUT] output scale pyramid. 
+%sharat@mit.edu
+%-------------------------------------------------------------
+function out  = c_local(s,POOL,STEP,SCALEPOOL,SCALESTEP)
   if(nargin<2)
 	POOL        = 9;
   end;

@@ -18,8 +18,8 @@ num_images      = length(image_set);
 if(isempty(bands))
   bands           = [1:2];
 end;
-patches_per_img = 10; 
-patch_sizes     = [4:4:12];
+patches_per_img = 1; 
+patch_sizes     = [3:5];
 num_sizes       = length(patch_sizes);
 retband		= [];
 retx        = [];

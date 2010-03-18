@@ -1,3 +1,13 @@
+%---------------------------------------------------
+%create_c0
+%creates and image pyramid 
+%parameters:
+% img   [IN] input image (grayscale)
+% scale [IN] scale factor between adjacent levels in the pyramid
+% levels[IN] number of levels in the pyramid
+% c0    [IN] a cell array of size (levelsx1) containing the pyramid
+%sharat@mit.edu
+%-----------------------------------------------------
 function c0=create_c0(img,scale,levels)
   if(isrgb(img))
     img=rgb2gray(img);
