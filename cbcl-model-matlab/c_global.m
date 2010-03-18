@@ -1,4 +1,14 @@
-function cterm  = c_terminal(s,domin)
+%----------------------------------------------------
+%c_global
+%performs global pooling. Used to compute scale/position
+%invariant features.
+%parameters:
+%  s : [IN] input scale pyramid
+%  domin: [IN] if this is true, global min is computed instead of  max
+%  c    : [OUT] output vector containing one value for each feature dimension.
+%sharat@mit.edu
+%----------------------------------------------------
+function cterm = c_global(s,domin)
   if(nargin<2)
 	domin=0;
   end;
