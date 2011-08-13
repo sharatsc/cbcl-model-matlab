@@ -1,4 +1,5 @@
 clear all;
+
 img = imread('cameraman.tif');
 c0Patches=read_patches('c0Patches.txt');
 c1Patches=read_patches('c1Patches.txt');
